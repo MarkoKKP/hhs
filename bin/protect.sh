@@ -26,7 +26,16 @@ set -euo pipefail
 
 PUBLIC_HTML="${PUBLIC_HTML:-$HOME/public_html}"
 OWNER_USER="${OWNER_USER:-}"
-GATE_CONFIG="${GATE_CONFIG:-$HOME/.hhs-gate.conf}"
+
+# When running as root with OWNER_USER set, put the config in the cPanel user's
+# home so Apache/PHP (running as that user) can actually read it.
+if [ -z "${GATE_CONFIG:-}" ]; then
+  if [ "$(id -u)" -eq 0 ] && [ -n "$OWNER_USER" ]; then
+    GATE_CONFIG="/home/$OWNER_USER/.hhs-gate.conf"
+  else
+    GATE_CONFIG="$HOME/.hhs-gate.conf"
+  fi
+fi
 
 log()   { printf '\033[1;36m[protect]\033[0m %s\n' "$*"; }
 fatal() { printf '\033[1;31m[error]\033[0m %s\n' "$*" >&2; exit 1; }
