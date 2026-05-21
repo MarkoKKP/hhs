@@ -12,10 +12,5 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: false
     }
-  },
-  vite: {
-    css: {
-      transformer: 'lightningcss'
-    }
   }
 });
