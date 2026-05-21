@@ -90,7 +90,10 @@ log "Syncing dist/ → $PUBLIC_HTML"
 EXCLUDES=(
   --exclude=cgi-bin/
   --exclude=.well-known/
+  --exclude=.htaccess
   --exclude=.htaccess.bak
+  --exclude=.htpasswd
+  --exclude=.htpasswd*
   --exclude=error_log
   --exclude=php_error_log
   --exclude=.cpanel/
