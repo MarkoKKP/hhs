@@ -31,6 +31,9 @@ PUBLIC_HTML="${PUBLIC_HTML:-$HOME/public_html}"
 BRANCH="${BRANCH:-main}"
 OWNER_USER="${OWNER_USER:-}"
 OWNER_GROUP="${OWNER_GROUP:-$OWNER_USER}"
+# Space-separated list of folder names inside PUBLIC_HTML to leave alone
+# (not synced over, not chowned). Use for legacy backups, WordPress dirs, etc.
+PRESERVE_DIRS="${PRESERVE_DIRS:-WPSITE}"
 
 # --- Helpers ---------------------------------------------------------------
 log()   { printf '\033[1;36m[deploy]\033[0m %s\n' "$*"; }
@@ -94,6 +97,15 @@ EXCLUDES=(
   --exclude=.htpasswds/
 )
 
+# Add project-specific preserve dirs (e.g., WPSITE backup)
+for dir in $PRESERVE_DIRS; do
+  EXCLUDES+=("--exclude=$dir/")
+done
+
+if [ -n "$PRESERVE_DIRS" ]; then
+  log "Preserving directories (not touched): $PRESERVE_DIRS"
+fi
+
 rsync -av --delete "${EXCLUDES[@]}" dist/ "$PUBLIC_HTML/"
 
 log "Sync complete."
@@ -101,15 +113,22 @@ log "Sync complete."
 # --- 5. Fix ownership when running as root ---------------------------------
 if [ "$RUNNING_AS_ROOT" -eq 1 ]; then
   log "Setting ownership: $OWNER_USER:$OWNER_GROUP on $PUBLIC_HTML"
-  # Only chown the dist/ files we just rsynced, not pre-existing cPanel system dirs
+
+  # Build the find -not -path args dynamically — keeps cPanel system dirs
+  # and any PRESERVE_DIRS untouched.
+  FIND_EXCLUDES=(
+    -not -path "$PUBLIC_HTML/cgi-bin*"
+    -not -path "$PUBLIC_HTML/.well-known*"
+    -not -path "$PUBLIC_HTML/.cpanel*"
+    -not -path "$PUBLIC_HTML/.htpasswds*"
+  )
+  for dir in $PRESERVE_DIRS; do
+    FIND_EXCLUDES+=( -not -path "$PUBLIC_HTML/$dir*" )
+  done
+
   while IFS= read -r -d '' file; do
     chown -h "$OWNER_USER:$OWNER_GROUP" "$file"
-  done < <(find "$PUBLIC_HTML" -mindepth 1 \
-            -not -path "$PUBLIC_HTML/cgi-bin*" \
-            -not -path "$PUBLIC_HTML/.well-known*" \
-            -not -path "$PUBLIC_HTML/.cpanel*" \
-            -not -path "$PUBLIC_HTML/.htpasswds*" \
-            -print0)
+  done < <(find "$PUBLIC_HTML" -mindepth 1 "${FIND_EXCLUDES[@]}" -print0)
 fi
 
 # --- 6. Cloudflare cache purge (optional) ----------------------------------
