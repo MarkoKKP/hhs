@@ -10,12 +10,14 @@
 #   2. npm install (only if package.json changed since last deploy)
 #   3. npm run build (Astro → dist/)
 #   4. rsync dist/ to PUBLIC_HTML (atomic-ish, preserves cPanel system files)
-#   5. Trigger Cloudflare cache purge (if CF env vars set)
+#   5. chown synced files to OWNER_USER:OWNER_GROUP (when running as root)
+#   6. Trigger Cloudflare cache purge (if CF env vars set)
 #
 # Prerequisites on the server:
 #   - Node.js 20+ available (enable via cPanel Node.js Selector or system install)
 #   - rsync available (standard on cPanel)
-#   - PUBLIC_HTML env var pointing to your public_html directory
+#   - PUBLIC_HTML env var pointing to the target public_html directory
+#   - OWNER_USER env var when running as root (e.g., "househil")
 #
 # Optional Cloudflare cache purge:
 #   export CF_ZONE_ID="..."
@@ -27,6 +29,8 @@ set -euo pipefail
 # --- Configuration ---------------------------------------------------------
 PUBLIC_HTML="${PUBLIC_HTML:-$HOME/public_html}"
 BRANCH="${BRANCH:-main}"
+OWNER_USER="${OWNER_USER:-}"
+OWNER_GROUP="${OWNER_GROUP:-$OWNER_USER}"
 
 # --- Helpers ---------------------------------------------------------------
 log()   { printf '\033[1;36m[deploy]\033[0m %s\n' "$*"; }
@@ -40,6 +44,14 @@ fatal() { printf '\033[1;31m[error]\033[0m %s\n' "$*" >&2; exit 1; }
 command -v node   >/dev/null || fatal "node not found. Enable Node.js Selector in cPanel."
 command -v npm    >/dev/null || fatal "npm not found."
 command -v rsync  >/dev/null || fatal "rsync not found."
+
+# Running as root requires OWNER_USER so synced files get correct ownership
+RUNNING_AS_ROOT=0
+if [ "$(id -u)" -eq 0 ]; then
+  RUNNING_AS_ROOT=1
+  [ -n "$OWNER_USER" ] || fatal "Running as root — set OWNER_USER (e.g., export OWNER_USER=househil) so synced files get correct ownership."
+  id "$OWNER_USER" >/dev/null 2>&1 || fatal "OWNER_USER '$OWNER_USER' does not exist on this system."
+fi
 
 # --- 1. Pull latest --------------------------------------------------------
 log "Pulling latest from origin/$BRANCH…"
@@ -86,7 +98,21 @@ rsync -av --delete "${EXCLUDES[@]}" dist/ "$PUBLIC_HTML/"
 
 log "Sync complete."
 
-# --- 5. Cloudflare cache purge (optional) ----------------------------------
+# --- 5. Fix ownership when running as root ---------------------------------
+if [ "$RUNNING_AS_ROOT" -eq 1 ]; then
+  log "Setting ownership: $OWNER_USER:$OWNER_GROUP on $PUBLIC_HTML"
+  # Only chown the dist/ files we just rsynced, not pre-existing cPanel system dirs
+  while IFS= read -r -d '' file; do
+    chown -h "$OWNER_USER:$OWNER_GROUP" "$file"
+  done < <(find "$PUBLIC_HTML" -mindepth 1 \
+            -not -path "$PUBLIC_HTML/cgi-bin*" \
+            -not -path "$PUBLIC_HTML/.well-known*" \
+            -not -path "$PUBLIC_HTML/.cpanel*" \
+            -not -path "$PUBLIC_HTML/.htpasswds*" \
+            -print0)
+fi
+
+# --- 6. Cloudflare cache purge (optional) ----------------------------------
 if [ -n "${CF_ZONE_ID:-}" ] && [ -n "${CF_API_TOKEN:-}" ]; then
   log "Purging Cloudflare cache…"
   curl -fsS -X POST \
