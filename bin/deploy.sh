@@ -94,6 +94,7 @@ EXCLUDES=(
   --exclude=.htaccess.bak
   --exclude=.htpasswd
   --exclude=.htpasswd*
+  --exclude=gate.php
   --exclude=error_log
   --exclude=php_error_log
   --exclude=.cpanel/

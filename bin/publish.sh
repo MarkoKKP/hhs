@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 # ============================================================
-# House Hill Star — Make site PUBLIC (remove Basic Auth)
+# House Hill Star — Publish site (remove password gate)
 #
 # Usage:
-#   ./bin/publish.sh           # prompts for confirmation
-#   ./bin/publish.sh --force   # skip confirmation
+#   ./bin/publish.sh           # asks for confirmation
+#   ./bin/publish.sh --force   # no prompt
 #
 # What it does:
-#   Writes an unlocked .htaccess into PUBLIC_HTML (auth directives removed).
-#   The .htpasswd file is left in place — re-locking is just ./bin/protect.sh.
+#   1. Removes gate.php from PUBLIC_HTML
+#   2. Writes a clean .htaccess with cache headers (no auth rules)
+#
+# The GATE_CONFIG file (password hash) is preserved — re-locking with
+# ./bin/protect.sh will reuse the existing password.
 # ============================================================
 
 set -euo pipefail
@@ -26,6 +29,13 @@ if [ "${1:-}" != "--force" ]; then
   case "$ans" in y|Y|yes|YES) ;; *) log "Cancelled."; exit 0;; esac
 fi
 
+# --- Remove the gate -------------------------------------------------------
+if [ -f "$PUBLIC_HTML/gate.php" ]; then
+  rm -f "$PUBLIC_HTML/gate.php"
+  log "Removed gate.php"
+fi
+
+# --- Write public .htaccess (no auth, with cache headers) ------------------
 log "Writing public .htaccess to $PUBLIC_HTML"
 
 cat > "$PUBLIC_HTML/.htaccess" <<'EOF'
@@ -34,7 +44,7 @@ cat > "$PUBLIC_HTML/.htaccess" <<'EOF'
 
 DirectoryIndex index.html
 
-# Long-cache static assets (CSS/JS/images) — they're content-hashed by Astro
+# Long-cache content-hashed assets (Astro adds hashes to CSS/JS filenames)
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType text/css                  "access plus 1 year"
@@ -46,11 +56,18 @@ DirectoryIndex index.html
   ExpiresByType font/woff2                "access plus 1 year"
 </IfModule>
 
-# Short-cache HTML so updates appear quickly
+# Short-cache HTML so deploys appear quickly
 <IfModule mod_headers.c>
   <FilesMatch "\.html$">
     Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 EOF
 
@@ -59,4 +76,4 @@ if [ "$(id -u)" -eq 0 ] && [ -n "$OWNER_USER" ]; then
 fi
 
 log "✅ Site is now PUBLIC at https://househillstar.com"
-log "   To re-lock: ./bin/protect.sh"
+log "   To re-lock with password gate: ./bin/protect.sh"
