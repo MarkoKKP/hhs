@@ -41,7 +41,7 @@ log()   { printf '\033[1;36m[protect]\033[0m %s\n' "$*"; }
 fatal() { printf '\033[1;31m[error]\033[0m %s\n' "$*" >&2; exit 1; }
 
 [ -d "$PUBLIC_HTML" ] || fatal "PUBLIC_HTML not found: $PUBLIC_HTML"
-command -v openssl >/dev/null || fatal "openssl required for password hashing"
+command -v php >/dev/null || fatal "php required for password hashing"
 
 PASSWORD="${1:-}"
 
@@ -52,7 +52,10 @@ if [ -n "$PASSWORD" ] || [ ! -f "$GATE_CONFIG" ]; then
   fi
   [ -n "$PASSWORD" ] || fatal "Password cannot be empty."
 
-  HASH=$(openssl passwd -apr1 "$PASSWORD")
+  # Use PHP's native password_hash (bcrypt) so the same PHP runtime that will
+  # verify also generated the hash — avoids APR1/crypt cross-implementation drift.
+  HASH=$(php -r 'echo password_hash($argv[1], PASSWORD_BCRYPT);' -- "$PASSWORD")
+  [ -n "$HASH" ] || fatal "password_hash returned empty — check PHP install."
 
   cat > "$GATE_CONFIG" <<EOF
 <?php
@@ -82,7 +85,7 @@ $is_https = (
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
-    if (!empty($password) && crypt($password, $GATE_PASSWORD_HASH) === $GATE_PASSWORD_HASH) {
+    if (!empty($password) && password_verify($password, $GATE_PASSWORD_HASH)) {
         setcookie($GATE_COOKIE_NAME, 'valid', [
             'expires'  => time() + 60 * 60 * 24 * $GATE_COOKIE_DAYS,
             'path'     => '/',
