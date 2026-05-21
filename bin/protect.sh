@@ -271,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <span>STAR</span>
   </div>
 
-  <div class="eyebrow">Pregled u pripremi</div>
+  <div class="eyebrow">Sajt u pripremi</div>
   <h1>Sajt je <em>uskoro</em><br>dostupan.</h1>
   <p class="lede">Trenutno je u privatnoj fazi pregleda. Unesite šifru da nastavite.</p>
 
