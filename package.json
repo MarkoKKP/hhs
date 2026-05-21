@@ -1,0 +1,17 @@
+{
+  "name": "house-hill-star",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "House Hill Star — boutique vacation rental, Kumbor, Boka Kotorska",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.0"
+  }
+}

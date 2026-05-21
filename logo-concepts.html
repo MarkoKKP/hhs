@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Hill Star — Logo Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Manrope',sans-serif;background:#F4F0E8;color:#0F1226;-webkit-font-smoothing:antialiased}
+  .doc{max-width:1280px;margin:0 auto;padding:48px 32px 96px}
+  .doc-header{margin-bottom:48px;text-align:center;padding-bottom:32px;border-bottom:1px solid #E5DFD0}
+  .doc-eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#C8A96B;font-weight:600;margin-bottom:16px}
+  .doc-title{font-family:'Playfair Display',serif;font-size:48px;font-weight:400;letter-spacing:-0.02em;margin:0 0 12px;line-height:1.05}
+  .doc-sub{font-size:15px;color:#6B6878;margin:0 auto;max-width:620px;line-height:1.6}
+
+  .concept{margin-bottom:64px;border:1px solid #E5DFD0;border-radius:0;overflow:hidden;background:#FFFFFF}
+  .concept-head{padding:32px 40px;border-bottom:1px solid #E5DFD0;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .concept-num{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.3em;color:#C8A96B;font-weight:600;text-transform:uppercase;margin-bottom:8px}
+  .concept-name{font-family:'Playfair Display',serif;font-size:36px;font-weight:400;margin:0 0 6px;letter-spacing:-0.01em}
+  .concept-name em{font-style:italic;color:#C8A96B}
+  .concept-tag{font-size:14px;color:#6B6878;max-width:420px;line-height:1.5;text-align:right}
+
+  .concept-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  @media(max-width:900px){.concept-body{grid-template-columns:1fr}}
+
+  .pane{padding:64px 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:340px;position:relative}
+  .pane-light{background:#F4F0E8}
+  .pane-dark{background:#0F1226;color:#F4F0E8}
+  .pane-dark.with-glow::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,169,107,0.15) 0%,transparent 60%);pointer-events:none}
+  .pane-label{position:absolute;top:16px;left:20px;font-size:9px;letter-spacing:.25em;color:#A8A3B8;text-transform:uppercase;font-weight:600;opacity:.7}
+  .pane-light .pane-label{color:#6B6878}
+
+  .logo{position:relative;z-index:2}
+
+  .variants{padding:32px 40px;background:#FAFAF7;border-top:1px solid #E5DFD0;display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .variant{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .variant-box{width:80px;height:80px;display:flex;align-items:center;justify-content:center;border-radius:0}
+  .variant-box.dark{background:#0F1226}
+  .variant-box.light{background:#F4F0E8;border:1px solid #E5DFD0}
+  .variant-box.gold{background:#C8A96B}
+  .variant-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#6B6878;font-weight:600}
+
+  .rationale{padding:32px 40px;border-top:1px solid #E5DFD0;background:#FFFFFF;font-size:14px;color:#3a3a3a;line-height:1.7}
+  .rationale h4{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#C8A96B;margin:0 0 12px;font-weight:600}
+  .rationale ul{margin:0;padding:0 0 0 20px}
+  .rationale li{margin-bottom:6px}
+
+  /* ============ CONCEPT 01 — STAR ============ */
+  .c1-mark{font-family:'Playfair Display',serif;font-size:36px;font-weight:500;letter-spacing:.08em;display:flex;align-items:center;gap:14px}
+  .c1-mark .star{width:18px;height:18px;display:inline-block}
+  .c1-mark.lg{font-size:48px;gap:18px}
+  .c1-mark.lg .star{width:22px;height:22px}
+
+  /* ============ CONCEPT 02 — HILL & HORIZON ============ */
+  .c2-mark{display:flex;flex-direction:column;align-items:center;gap:18px}
+  .c2-icon{width:96px;height:96px}
+  .c2-text{font-family:'Playfair Display',serif;font-size:24px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;text-align:center;line-height:1.2}
+  .c2-text .sub{display:block;font-family:'Manrope',sans-serif;font-size:10px;letter-spacing:.4em;font-weight:500;margin-top:8px;opacity:.7}
+
+  /* ============ CONCEPT 03 — MONOGRAM ============ */
+  .c3-mark{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .c3-mono{width:80px;height:80px;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:38px;font-weight:400;letter-spacing:-0.04em;position:relative}
+  .c3-mono::before,.c3-mono::after{content:'';position:absolute;width:8px;height:8px;border:1px solid currentColor}
+  .c3-mono::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+  .c3-mono::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+  .c3-text{font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.2em;text-transform:uppercase;text-align:center}
+  .c3-text .sub{display:block;font-family:'Manrope',sans-serif;font-size:9px;letter-spacing:.45em;margin-top:6px;font-weight:500;opacity:.7}
+
+  /* footer note */
+  .note{padding:32px;background:#0F1226;color:#A8A3B8;border-radius:0;text-align:center;font-size:14px;line-height:1.6;margin-top:48px}
+  .note strong{color:#C8A96B;display:block;font-family:'Playfair Display',serif;font-style:italic;font-size:20px;font-weight:400;margin-bottom:8px;letter-spacing:0}
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="doc-header">
+    <div class="doc-eyebrow">Logo concepts · v1</div>
+    <h1 class="doc-title">House Hill Star — Three Directions</h1>
+    <p class="doc-sub">Sva tri koncepta poštuju Hillside Twilight paletu, koriste Playfair Display kao primarni font, i funkcionišu i u svetloj i u tamnoj varijanti. Pogledaj sva tri, pa odaberi pravac.</p>
+  </div>
+
+  <!-- ============ CONCEPT 01 ============ -->
+  <div class="concept">
+    <div class="concept-head">
+      <div>
+        <div class="concept-num">Concept 01</div>
+        <h2 class="concept-name">The <em>Star</em></h2>
+      </div>
+      <p class="concept-tag">Doslovan koncept — zvezda je u imenu, stoji između reči kao tipografski separator. Najčistija veza imena i znaka.</p>
+    </div>
+    <div class="concept-body">
+      <div class="pane pane-light">
+        <span class="pane-label">Light · primary</span>
+        <div class="logo">
+          <div class="c1-mark lg" style="color:#0F1226">
+            <span>HOUSE</span>
+            <svg class="star" viewBox="0 0 24 24" fill="#C8A96B"><polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5"/></svg>
+            <span>HILL</span>
+            <svg class="star" viewBox="0 0 24 24" fill="#C8A96B"><polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5"/></svg>
+            <span>STAR</span>
+          </div>
+        </div>
+      </div>
+      <div class="pane pane-dark with-glow">
+        <span class="pane-label">Dark · hero</span>
+        <div class="logo">
+          <div class="c1-mark lg" style="color:#F4F0E8">
+            <span>HOUSE</span>
+            <svg class="star" viewBox="0 0 24 24" fill="#C8A96B"><polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5"/></svg>
+            <span>HILL</span>
+            <svg class="star" viewBox="0 0 24 24" fill="#C8A96B"><polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5"/></svg>
+            <span>STAR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="variants">
+      <div class="variant">
+        <div class="variant-box dark">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="#C8A96B"><polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5"/></svg>
+        </div>
+        <span class="variant-label">Favicon</span>
+      </div>
+      <div class="variant">
+        <div class="variant-box light">
+          <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:500;letter-spacing:.05em;color:#0F1226;display:flex;align-items:center;gap:6px">
+            <span>H</span><svg width="8" height="8" viewBox="0 0 24 24" fill="#C8A96B"><polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5"/></svg><span>H</span><svg width="8" height="8" viewBox="0 0 24 24" fill="#C8A96B"><polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5"/></svg><span>S</span>
+          </div>
+        </div>
+        <span class="variant-label">Header tight</span>
+      </div>
+      <div class="variant">
+        <div class="variant-box gold">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="#0F1226"><polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5"/></svg>
+        </div>
+        <span class="variant-label">Stamp / seal</span>
+      </div>
+    </div>
+    <div class="rationale">
+      <h4>Why this works</h4>
+      <ul>
+        <li><strong>Direct semantic link</strong> — "Star" iz imena postaje vizuelno prisutan element, ne apstrakcija.</li>
+        <li><strong>Skalabilno</strong> — radi i u tight header verziji (samo inicijali sa zvezdom), i u full hero verziji (puno ime).</li>
+        <li><strong>Favicon je trivijalan</strong> — zlatna zvezda na indigo, instant prepoznatljiv.</li>
+        <li><strong>4-kraka zvezda (compass star)</strong> ne 5-kraka — luksuznije, manje "holivud", asocira na nautičke karte i navigaciju.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ CONCEPT 02 ============ -->
+  <div class="concept">
+    <div class="concept-head">
+      <div>
+        <div class="concept-num">Concept 02</div>
+        <h2 class="concept-name">Hill & <em>Horizon</em></h2>
+      </div>
+      <p class="concept-tag">Apstraktan znak — silueta brda + zvezda iznad horizonta. Geografski i narativan, prepoznatljiv i bez teksta.</p>
+    </div>
+    <div class="concept-body">
+      <div class="pane pane-light">
+        <span class="pane-label">Light · primary</span>
+        <div class="logo">
+          <div class="c2-mark" style="color:#0F1226">
+            <svg class="c2-icon" viewBox="0 0 100 100" fill="none">
+              <!-- horizon line -->
+              <line x1="10" y1="68" x2="90" y2="68" stroke="#C8A96B" stroke-width="1"/>
+              <!-- hill silhouette -->
+              <path d="M10 68 Q30 50, 50 55 Q70 60, 90 68 Z" fill="#0F1226"/>
+              <!-- second hill behind -->
+              <path d="M20 68 Q40 38, 60 48 Q75 55, 90 68 Z" fill="#0F1226" opacity="0.45"/>
+              <!-- star -->
+              <polygon points="50,15 52,26 63,28 52,30 50,41 48,30 37,28 48,26" fill="#C8A96B"/>
+              <!-- ground line -->
+              <line x1="10" y1="85" x2="90" y2="85" stroke="#0F1226" stroke-width="1" opacity="0.2"/>
+            </svg>
+            <div class="c2-text">
+              House Hill Star
+              <span class="sub">Kumbor · Boka Kotorska</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pane pane-dark with-glow">
+        <span class="pane-label">Dark · hero</span>
+        <div class="logo">
+          <div class="c2-mark" style="color:#F4F0E8">
+            <svg class="c2-icon" viewBox="0 0 100 100" fill="none">
+              <line x1="10" y1="68" x2="90" y2="68" stroke="#C8A96B" stroke-width="1"/>
+              <path d="M10 68 Q30 50, 50 55 Q70 60, 90 68 Z" fill="#F4F0E8"/>
+              <path d="M20 68 Q40 38, 60 48 Q75 55, 90 68 Z" fill="#F4F0E8" opacity="0.35"/>
+              <polygon points="50,15 52,26 63,28 52,30 50,41 48,30 37,28 48,26" fill="#C8A96B"/>
+              <line x1="10" y1="85" x2="90" y2="85" stroke="#F4F0E8" stroke-width="1" opacity="0.25"/>
+            </svg>
+            <div class="c2-text">
+              House Hill Star
+              <span class="sub">Kumbor · Boka Kotorska</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="variants">
+      <div class="variant">
+        <div class="variant-box dark">
+          <svg width="44" height="44" viewBox="0 0 100 100">
+            <line x1="10" y1="68" x2="90" y2="68" stroke="#C8A96B" stroke-width="2"/>
+            <path d="M10 68 Q30 50, 50 55 Q70 60, 90 68 Z" fill="#F4F0E8"/>
+            <polygon points="50,18 52,28 62,30 52,32 50,42 48,32 38,30 48,28" fill="#C8A96B"/>
+          </svg>
+        </div>
+        <span class="variant-label">Favicon</span>
+      </div>
+      <div class="variant">
+        <div class="variant-box light">
+          <svg width="44" height="44" viewBox="0 0 100 100">
+            <line x1="10" y1="68" x2="90" y2="68" stroke="#C8A96B" stroke-width="2"/>
+            <path d="M10 68 Q30 50, 50 55 Q70 60, 90 68 Z" fill="#0F1226"/>
+            <polygon points="50,18 52,28 62,30 52,32 50,42 48,32 38,30 48,28" fill="#C8A96B"/>
+          </svg>
+        </div>
+        <span class="variant-label">Watermark</span>
+      </div>
+      <div class="variant">
+        <div class="variant-box gold">
+          <svg width="44" height="44" viewBox="0 0 100 100">
+            <line x1="10" y1="68" x2="90" y2="68" stroke="#0F1226" stroke-width="2"/>
+            <path d="M10 68 Q30 50, 50 55 Q70 60, 90 68 Z" fill="#0F1226"/>
+            <polygon points="50,18 52,28 62,30 52,32 50,42 48,32 38,30 48,28" fill="#0F1226"/>
+          </svg>
+        </div>
+        <span class="variant-label">Single-color print</span>
+      </div>
+    </div>
+    <div class="rationale">
+      <h4>Why this works</h4>
+      <ul>
+        <li><strong>Priča kuće u jednom znaku</strong> — brdo (Hill), zvezda iznad (Star), horizont (zaliv). Sve tri reči imena dobijaju vizuelnu reprezentaciju.</li>
+        <li><strong>Funkcioniše bez teksta</strong> — može se koristiti samostalno na social mediji, embroidery, signage.</li>
+        <li><strong>Single-color print friendly</strong> — može se ugravirati u kamen, drvo, papir bez gubitka karaktera.</li>
+        <li><strong>Najambiciozniji</strong> — najjači brend kapital dugoročno, ali traži više dorade nego ostala dva.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ CONCEPT 03 ============ -->
+  <div class="concept">
+    <div class="concept-head">
+      <div>
+        <div class="concept-num">Concept 03</div>
+        <h2 class="concept-name">The <em>Monogram</em></h2>
+      </div>
+      <p class="concept-tag">Klasičan butik-hotel monogram — inicijali "HHS" u eleganntnom okviru. Tradicija evropskih malih hotela.</p>
+    </div>
+    <div class="concept-body">
+      <div class="pane pane-light">
+        <span class="pane-label">Light · primary</span>
+        <div class="logo">
+          <div class="c3-mark" style="color:#0F1226">
+            <div class="c3-mono" style="color:#C8A96B;border-color:#C8A96B"><span style="font-style:italic">H<small style="font-size:.7em;letter-spacing:0;margin:0 -3px">H</small>S</span></div>
+            <div class="c3-text" style="color:#0F1226">
+              House Hill Star
+              <span class="sub">Est. 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pane pane-dark with-glow">
+        <span class="pane-label">Dark · hero</span>
+        <div class="logo">
+          <div class="c3-mark" style="color:#F4F0E8">
+            <div class="c3-mono" style="color:#C8A96B;border-color:#C8A96B"><span style="font-style:italic">H<small style="font-size:.7em;letter-spacing:0;margin:0 -3px">H</small>S</span></div>
+            <div class="c3-text" style="color:#F4F0E8">
+              House Hill Star
+              <span class="sub" style="color:#C8A96B">Est. 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="variants">
+      <div class="variant">
+        <div class="variant-box dark" style="position:relative">
+          <div style="width:44px;height:44px;border:1px solid #C8A96B;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;color:#C8A96B;font-style:italic;position:relative">
+            <span>H<small style="font-size:.7em;letter-spacing:0;margin:0 -2px">H</small>S</span>
+          </div>
+        </div>
+        <span class="variant-label">Favicon</span>
+      </div>
+      <div class="variant">
+        <div class="variant-box light">
+          <div style="width:44px;height:44px;border:1px solid #C8A96B;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;color:#C8A96B;font-style:italic">
+            <span>H<small style="font-size:.7em;letter-spacing:0;margin:0 -2px">H</small>S</span>
+          </div>
+        </div>
+        <span class="variant-label">Watermark</span>
+      </div>
+      <div class="variant">
+        <div class="variant-box gold">
+          <div style="width:44px;height:44px;border:1px solid #0F1226;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;color:#0F1226;font-style:italic">
+            <span>H<small style="font-size:.7em;letter-spacing:0;margin:0 -2px">H</small>S</span>
+          </div>
+        </div>
+        <span class="variant-label">Embossed seal</span>
+      </div>
+    </div>
+    <div class="rationale">
+      <h4>Why this works</h4>
+      <ul>
+        <li><strong>Najbutik feel</strong> — direktan vizuelni jezik evropskih malih hotela (Lake Como villas, Tuscany agriturismi).</li>
+        <li><strong>Skalabilan</strong> — radi savršeno kao favicon (44px), social avatar (400px), i ugravirani znak (signage).</li>
+        <li><strong>Tihi i samouverni</strong> — ne traži pažnju, što je u skladu sa "discreet luxury" pozicijom.</li>
+        <li><strong>Rizik</strong> — može da deluje generičan ako se ne dorađuje pažljivo. Tipografski detalji srednjeg "H" su ključni.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Sledeći korak</strong>
+    Odaberi jedan koncept (ili kombinaciju — npr. Star wordmark + Monogram favicon).<br>
+    Posle odabira, finalizujem SVG fajlove (svetla, tamna, zlatna varijanta), favicon set, i embed u Astro projekat.
+  </div>
+
+</div>
+</body>
+</html>

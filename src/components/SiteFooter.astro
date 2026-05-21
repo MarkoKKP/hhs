@@ -1,0 +1,136 @@
+---
+import { useTranslations, type Lang } from '../i18n/ui';
+import { bookingUrl } from '../i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'sr' } = Astro.props;
+const t = useTranslations(lang);
+---
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <div class="site-footer__logo">
+        <span>HOUSE</span>
+        <svg class="star" viewBox="0 0 24 24" aria-hidden="true">
+          <polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5" />
+        </svg>
+        <span>HILL</span>
+        <svg class="star" viewBox="0 0 24 24" aria-hidden="true">
+          <polygon points="12,0 14.5,9.5 24,12 14.5,14.5 12,24 9.5,14.5 0,12 9.5,9.5" />
+        </svg>
+        <span>STAR</span>
+      </div>
+      <p class="site-footer__tagline">{t('footer.tagline')}</p>
+    </div>
+
+    <div class="site-footer__meta">
+      <div>
+        <span class="site-footer__label">{t('nav.location')}</span>
+        <p>{t('footer.location')}</p>
+      </div>
+      <div>
+        <span class="site-footer__label">Kontakt</span>
+        <a href={`mailto:${t('footer.email')}`}>{t('footer.email')}</a>
+      </div>
+      <div>
+        <span class="site-footer__label">Rezervacije</span>
+        <a href={bookingUrl[lang]} target="_blank" rel="noopener">Booking.com</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="site-footer__base container">
+    <p>{t('footer.copyright')}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-primary);
+    color: var(--color-text-on-dark);
+    padding-block: var(--space-7) var(--space-4);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr;
+    gap: var(--space-7);
+    align-items: start;
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border-dark);
+  }
+
+  .site-footer__logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: var(--space-2);
+  }
+
+  .site-footer__logo .star {
+    width: 14px;
+    height: 14px;
+    fill: var(--color-accent);
+    flex: 0 0 14px;
+  }
+
+  .site-footer__tagline {
+    font-size: 15px;
+    color: var(--color-text-muted-dark);
+    margin: 0;
+    max-width: 320px;
+    line-height: 1.6;
+  }
+
+  .site-footer__meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .site-footer__label {
+    display: block;
+    font-size: var(--text-eyebrow);
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-2);
+  }
+
+  .site-footer__meta p,
+  .site-footer__meta a {
+    margin: 0;
+    font-size: 15px;
+    color: var(--color-text-on-dark);
+    line-height: 1.5;
+  }
+
+  .site-footer__meta a:hover { color: var(--color-accent); }
+
+  .site-footer__base {
+    padding-top: var(--space-4);
+    font-size: var(--text-small);
+    color: var(--color-text-muted-dark);
+  }
+
+  .site-footer__base p { margin: 0; }
+
+  @media (max-width: 900px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+    .site-footer__meta {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+  }
+</style>

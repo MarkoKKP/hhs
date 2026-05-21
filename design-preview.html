@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Hill Star — 3 Brand Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;background:#f3f3f1;color:#111}
+  .doc{max-width:1280px;margin:0 auto;padding:48px 32px 96px}
+  .doc-header{margin-bottom:48px}
+  .doc-title{font-family:'Fraunces',serif;font-size:48px;font-weight:500;letter-spacing:-0.02em;margin:0 0 8px}
+  .doc-sub{font-size:15px;color:#666;margin:0;max-width:680px;line-height:1.6}
+  .direction{background:#fff;border-radius:16px;overflow:hidden;margin-bottom:48px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 8px 32px rgba(0,0,0,.04)}
+  .dir-head{padding:32px 40px 24px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .dir-num{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.2em;color:#999;text-transform:uppercase;margin-bottom:8px}
+  .dir-name{font-family:'Fraunces',serif;font-size:32px;font-weight:500;letter-spacing:-0.01em;margin:0}
+  .dir-tag{font-size:14px;color:#777;max-width:380px;text-align:right;line-height:1.5}
+  .dir-body{padding:32px 40px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px}
+  @media(max-width:900px){.row{grid-template-columns:1fr}}
+  .panel-label{font-size:11px;letter-spacing:.18em;color:#999;text-transform:uppercase;margin:0 0 12px;font-weight:600}
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .sw{aspect-ratio:1;border-radius:8px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;font-size:10px;font-weight:600;letter-spacing:.05em}
+  .sw .role{opacity:.85;font-weight:400;font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+  .typo-sample{padding:24px;border-radius:12px;background:#fafafa;border:1px solid #eee}
+  .typo-display{font-size:36px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 8px}
+  .typo-body{font-size:14px;line-height:1.6;color:#555;margin:0 0 16px}
+  .typo-meta{font-size:11px;color:#999;letter-spacing:.05em;font-family:'Inter',sans-serif}
+
+  /* ---------- HOMEPAGE MOCKUPS ---------- */
+  .mock{border-radius:12px;overflow:hidden;border:1px solid #eee}
+  .mock-label{font-size:11px;letter-spacing:.18em;color:#999;text-transform:uppercase;margin:24px 0 12px;font-weight:600}
+
+  /* === D1: ADRIATIC CALM === */
+  .d1{--primary:#0f2a3f;--secondary:#e6dcc8;--accent:#c97b5b;--bg:#fbf8f3;--surface:#ffffff;--text:#1a1a1a;--muted:#6b6b6b;--border:#e7e3da}
+  .d1 .hero{background:linear-gradient(180deg,#fbf8f3 0%,#fbf8f3 60%,#e6dcc8 100%);padding:48px 40px 80px;position:relative}
+  .d1 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:80px}
+  .d1 .logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;letter-spacing:.04em;color:#0f2a3f}
+  .d1 .nav{display:flex;gap:28px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#0f2a3f}
+  .d1 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end}
+  .d1 .eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#c97b5b;margin-bottom:20px;font-weight:600}
+  .d1 h1{font-family:'Cormorant Garamond',serif;font-size:72px;line-height:.95;letter-spacing:-0.02em;font-weight:500;color:#0f2a3f;margin:0 0 24px}
+  .d1 h1 em{font-style:italic;color:#c97b5b}
+  .d1 .lede{font-size:16px;line-height:1.6;color:#3a3a3a;max-width:440px;margin:0 0 32px}
+  .d1 .cta-row{display:flex;gap:16px;align-items:center}
+  .d1 .btn-primary{background:#0f2a3f;color:#fbf8f3;padding:16px 32px;border-radius:0;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+  .d1 .btn-text{color:#0f2a3f;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;border-bottom:1px solid #0f2a3f;padding-bottom:4px}
+  .d1 .hero-photo{aspect-ratio:3/4;background:linear-gradient(135deg,#3a5a72 0%,#1a3a52 50%,#0f2a3f 100%);border-radius:0;position:relative;overflow:hidden}
+  .d1 .hero-photo::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%, rgba(201,123,91,.4), transparent 60%)}
+  .d1 .hero-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(180deg,transparent,rgba(15,42,63,.6))}
+  .d1 .photo-tag{position:absolute;bottom:20px;left:20px;color:#fbf8f3;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;z-index:2}
+  .d1 .strip{background:#0f2a3f;color:#fbf8f3;padding:24px 40px;display:flex;justify-content:space-between;align-items:center;font-size:13px;letter-spacing:.1em}
+  .d1 .strip-item{display:flex;gap:10px;align-items:center}
+  .d1 .strip-item .dot{width:6px;height:6px;border-radius:50%;background:#c97b5b}
+  .d1 .section-2{padding:80px 40px;background:#fbf8f3;display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:center}
+  .d1 .section-2 .sm-eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#c97b5b;margin-bottom:16px;font-weight:600}
+  .d1 .section-2 h2{font-family:'Cormorant Garamond',serif;font-size:42px;line-height:1.05;font-weight:500;color:#0f2a3f;margin:0 0 20px}
+  .d1 .section-2 p{font-size:15px;line-height:1.7;color:#3a3a3a;margin:0}
+  .d1 .amenity-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid #d6cfbc}
+  .d1 .amenity{padding:20px 0;border-bottom:1px solid #d6cfbc;display:flex;justify-content:space-between;align-items:center;font-family:'Cormorant Garamond',serif;font-size:20px;color:#0f2a3f}
+  .d1 .amenity:nth-child(odd){border-right:1px solid #d6cfbc;padding-right:24px}
+  .d1 .amenity:nth-child(even){padding-left:24px}
+  .d1 .amenity .num{font-family:'Inter',sans-serif;font-size:11px;color:#c97b5b;letter-spacing:.2em}
+
+  /* === D2: STONE & OLIVE === */
+  .d2{--primary:#3d4a2a;--secondary:#d9c8a8;--accent:#b8542e;--bg:#f5efe3;--surface:#ebe2cf;--text:#2b2620;--muted:#6f655a;--border:#d4c6a8}
+  .d2 .hero{background:#f5efe3;padding:0;position:relative}
+  .d2 .topbar{display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-bottom:1px solid #d4c6a8}
+  .d2 .logo{font-family:'Fraunces',serif;font-weight:700;font-size:18px;letter-spacing:.02em;color:#3d4a2a;display:flex;align-items:center;gap:10px}
+  .d2 .logo-mark{width:24px;height:24px;border:2px solid #b8542e;transform:rotate(45deg);position:relative}
+  .d2 .logo-mark::after{content:'';position:absolute;inset:4px;background:#b8542e}
+  .d2 .nav{display:flex;gap:32px;font-family:'Fraunces',serif;font-size:15px;font-style:italic;color:#3d4a2a}
+  .d2 .hero-main{padding:64px 40px 0;display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:start}
+  .d2 .hero-left{padding-bottom:64px}
+  .d2 .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#3d4a2a;color:#f5efe3;border-radius:99px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:24px}
+  .d2 h1{font-family:'Fraunces',serif;font-size:80px;line-height:.92;letter-spacing:-0.03em;font-weight:500;color:#3d4a2a;margin:0 0 28px}
+  .d2 h1 .accent{color:#b8542e;font-style:italic;font-weight:400}
+  .d2 .lede{font-size:17px;line-height:1.65;color:#5a4f43;max-width:480px;margin:0 0 36px;font-family:'DM Sans',sans-serif}
+  .d2 .cta-row{display:flex;gap:12px;align-items:center}
+  .d2 .btn-primary{background:#b8542e;color:#f5efe3;padding:18px 32px;border-radius:99px;font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif}
+  .d2 .btn-ghost{padding:18px 24px;color:#3d4a2a;font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;display:flex;gap:8px;align-items:center}
+  .d2 .hero-right{position:relative}
+  .d2 .photo-stack{position:relative;height:520px}
+  .d2 .ph1{position:absolute;top:0;right:0;width:80%;height:60%;background:linear-gradient(135deg,#7a8a4a 0%,#3d4a2a 100%);border-radius:8px}
+  .d2 .ph2{position:absolute;bottom:0;left:0;width:65%;height:55%;background:linear-gradient(135deg,#b8542e 0%,#7a3520 100%);border-radius:8px;border:6px solid #f5efe3}
+  .d2 .ph-quote{position:absolute;bottom:30px;right:0;background:#ebe2cf;padding:20px 24px;max-width:220px;font-family:'Fraunces',serif;font-style:italic;font-size:16px;line-height:1.4;color:#3d4a2a;border-radius:8px;box-shadow:0 12px 32px rgba(0,0,0,.12)}
+  .d2 .ph-quote .stars{color:#b8542e;font-size:12px;letter-spacing:.2em;margin-bottom:8px;font-style:normal}
+  .d2 .section-2{background:#ebe2cf;padding:80px 40px;border-top:1px solid #d4c6a8}
+  .d2 .section-2 h2{font-family:'Fraunces',serif;font-size:48px;font-weight:500;color:#3d4a2a;margin:0 0 12px;max-width:600px;line-height:1.05}
+  .d2 .section-2 .sub{font-family:'DM Sans',sans-serif;font-size:15px;color:#6f655a;margin:0 0 48px;max-width:560px;line-height:1.6}
+  .d2 .amenity-flow{display:flex;flex-wrap:wrap;gap:12px}
+  .d2 .chip{padding:14px 22px;background:#f5efe3;border:1px solid #d4c6a8;border-radius:99px;font-family:'DM Sans',sans-serif;font-size:14px;color:#3d4a2a;display:flex;gap:10px;align-items:center}
+  .d2 .chip .dot{width:6px;height:6px;border-radius:50%;background:#b8542e}
+  .d2 .chip.feature{background:#3d4a2a;color:#f5efe3;border-color:#3d4a2a}
+  .d2 .chip.feature .dot{background:#f5efe3}
+
+  /* === D3: HILLSIDE TWILIGHT === */
+  .d3{--primary:#1a1f3a;--secondary:#2d3458;--accent:#c8a96b;--bg:#0f1226;--surface:#1a1f3a;--text:#f4f0e8;--muted:#a8a3b8;--border:#2d3458}
+  .d3 .hero{background:linear-gradient(180deg,#0f1226 0%,#1a1f3a 70%,#2d3458 100%);color:#f4f0e8;padding:36px 40px 0;position:relative;overflow:hidden}
+  .d3 .hero::before{content:'';position:absolute;top:0;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(200,169,107,.18) 0%,transparent 60%);pointer-events:none}
+  .d3 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:96px;position:relative;z-index:2}
+  .d3 .logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:500;letter-spacing:.06em;color:#c8a96b}
+  .d3 .logo .star{margin:0 6px;font-size:18px}
+  .d3 .nav{display:flex;gap:32px;font-family:'Manrope',sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#f4f0e8;font-weight:500}
+  .d3 .nav a{position:relative}
+  .d3 .nav .book-btn{padding:10px 22px;border:1px solid #c8a96b;color:#c8a96b;border-radius:0}
+  .d3 .hero-content{position:relative;z-index:2;max-width:920px;padding-bottom:64px}
+  .d3 .pre-title{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:#c8a96b;margin-bottom:32px;display:flex;align-items:center;gap:16px}
+  .d3 .pre-title::before,.d3 .pre-title::after{content:'';flex:0 0 32px;height:1px;background:#c8a96b}
+  .d3 .pre-title::after{flex:1}
+  .d3 h1{font-family:'Playfair Display',serif;font-size:96px;line-height:.95;letter-spacing:-0.02em;font-weight:400;margin:0 0 32px;color:#f4f0e8}
+  .d3 h1 .gold{color:#c8a96b;font-style:italic;font-weight:500}
+  .d3 .lede{font-family:'Manrope',sans-serif;font-size:18px;line-height:1.6;color:#c8c4d4;max-width:560px;margin:0 0 48px;font-weight:300}
+  .d3 .cta-row{display:flex;gap:20px;align-items:center}
+  .d3 .btn-primary{background:#c8a96b;color:#0f1226;padding:18px 36px;font-family:'Manrope',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border-radius:0}
+  .d3 .btn-ghost{color:#f4f0e8;font-family:'Manrope',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;display:flex;gap:12px;align-items:center}
+  .d3 .meta-strip{display:flex;gap:48px;margin-top:64px;padding-top:32px;border-top:1px solid rgba(200,169,107,.25)}
+  .d3 .meta-item .num{font-family:'Playfair Display',serif;font-size:36px;color:#c8a96b;font-weight:400;line-height:1}
+  .d3 .meta-item .lbl{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#a8a3b8;margin-top:8px}
+  .d3 .section-2{background:#0f1226;padding:96px 40px;color:#f4f0e8;position:relative}
+  .d3 .section-2 .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .d3 .section-2 h2{font-family:'Playfair Display',serif;font-size:56px;line-height:1.05;font-weight:400;margin:0 0 24px}
+  .d3 .section-2 h2 .gold{color:#c8a96b;font-style:italic}
+  .d3 .section-2 p{font-family:'Manrope',sans-serif;font-size:16px;line-height:1.7;color:#c8c4d4;font-weight:300;max-width:480px}
+  .d3 .feature-card{background:linear-gradient(180deg,#1a1f3a,#2d3458);padding:40px;border:1px solid rgba(200,169,107,.2);position:relative}
+  .d3 .feature-card::before{content:'';position:absolute;top:0;left:0;width:60px;height:1px;background:#c8a96b}
+  .d3 .feature-card .lbl{font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#c8a96b;margin-bottom:16px}
+  .d3 .feature-card h3{font-family:'Playfair Display',serif;font-size:32px;font-weight:400;margin:0 0 12px;color:#f4f0e8}
+  .d3 .feature-card p{font-family:'Manrope',sans-serif;font-size:14px;color:#a8a3b8;line-height:1.6;margin:0;font-weight:300}
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="doc-header">
+    <h1 class="doc-title">House Hill Star — Brand & Homepage Directions</h1>
+    <p class="doc-sub">Tri smera vizuelnog identiteta za luksuzni smeštaj u Boki Kotorskoj. Svaki smer ima sopstvenu paletu, tipografiju i predloženi homepage layout. Pregledaj, pa odaberi smer koji najbolje hvata duh kuće.</p>
+  </div>
+
+  <!-- ============ DIRECTION 1 ============ -->
+  <div class="direction d1">
+    <div class="dir-head">
+      <div>
+        <div class="dir-num">Direction 01</div>
+        <h2 class="dir-name">Adriatic Calm</h2>
+      </div>
+      <p class="dir-tag">Coastal minimalism — duboko more, peščani tonovi, prostran beli prostor. Za goste koji traže tišinu i diskreciju.</p>
+    </div>
+    <div class="dir-body">
+      <div class="row">
+        <div>
+          <p class="panel-label">Color palette</p>
+          <div class="swatches">
+            <div class="sw" style="background:#0f2a3f;color:#fbf8f3"><span class="role">Primary</span>#0F2A3F</div>
+            <div class="sw" style="background:#e6dcc8;color:#0f2a3f"><span class="role">Secondary</span>#E6DCC8</div>
+            <div class="sw" style="background:#c97b5b;color:#fbf8f3"><span class="role">Accent</span>#C97B5B</div>
+            <div class="sw" style="background:#fbf8f3;color:#0f2a3f;border:1px solid #e7e3da"><span class="role">Bg</span>#FBF8F3</div>
+          </div>
+        </div>
+        <div>
+          <p class="panel-label">Typography</p>
+          <div class="typo-sample">
+            <h3 class="typo-display" style="font-family:'Cormorant Garamond',serif;color:#0f2a3f;font-weight:500"><em style="color:#c97b5b">Vaš</em> raj u Boki Kotorskoj</h3>
+            <p class="typo-body">House Hill Star je miran kutak iznad Bokokotorskog zaliva, skriven od pogleda i otvoren ka moru.</p>
+            <p class="typo-meta">Cormorant Garamond · Inter · Editorial pairing</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mock-label">Homepage concept 01 — Editorial coastal</p>
+      <div class="mock">
+        <div class="hero">
+          <div class="topbar">
+            <div class="logo">HOUSE HILL STAR</div>
+            <nav class="nav"><a>Početna</a><a>Galerija</a><a>Kumbor</a><a>O nama</a></nav>
+          </div>
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">Kumbor · Boka Kotorska</div>
+              <h1>Tišina, more,<br>i <em>jedna kuća</em><br>na brdu.</h1>
+              <p class="lede">Vila za dvoje, skrivena u zelenilu iznad Portonovog. Privatna terasa, klima, vrt, parking — sve samo vaše.</p>
+              <div class="cta-row">
+                <a class="btn-primary">Rezerviši na Booking</a>
+                <a class="btn-text">Pogledaj galeriju →</a>
+              </div>
+            </div>
+            <div class="hero-photo">
+              <span class="photo-tag">Pogled na zaliv u sumrak</span>
+            </div>
+          </div>
+        </div>
+        <div class="strip">
+          <div class="strip-item"><span class="dot"></span>9.4 / 10 na Booking.com</div>
+          <div class="strip-item"><span class="dot"></span>Privatan ulaz</div>
+          <div class="strip-item"><span class="dot"></span>5 min do plaže</div>
+          <div class="strip-item"><span class="dot"></span>Wi-Fi · Klima · Parking</div>
+        </div>
+        <div class="section-2">
+          <div>
+            <div class="sm-eyebrow">O smeštaju</div>
+            <h2>Diskretan luksuz, bez nepotrebnih reči.</h2>
+            <p>Spavaća soba, dnevni boravak, opremljena kuhinja, kupatilo i terasa sa pogledom. Za jedan par — nikad više.</p>
+          </div>
+          <div class="amenity-list">
+            <div class="amenity"><span>Pogled na more</span><span class="num">01</span></div>
+            <div class="amenity"><span>Klima uređaj</span><span class="num">02</span></div>
+            <div class="amenity"><span>Privatni vrt</span><span class="num">03</span></div>
+            <div class="amenity"><span>Wi-Fi internet</span><span class="num">04</span></div>
+            <div class="amenity"><span>Sopstveni parking</span><span class="num">05</span></div>
+            <div class="amenity"><span>Opremljena kuhinja</span><span class="num">06</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DIRECTION 2 ============ -->
+  <div class="direction d2">
+    <div class="dir-head">
+      <div>
+        <div class="dir-num">Direction 02</div>
+        <h2 class="dir-name">Stone & Olive</h2>
+      </div>
+      <p class="dir-tag">Mediteranska toplina — kamen, maslina, sunce. Topao i opipljiv brend za sporiji, romantičniji odmor.</p>
+    </div>
+    <div class="dir-body">
+      <div class="row">
+        <div>
+          <p class="panel-label">Color palette</p>
+          <div class="swatches">
+            <div class="sw" style="background:#3d4a2a;color:#f5efe3"><span class="role">Primary</span>#3D4A2A</div>
+            <div class="sw" style="background:#d9c8a8;color:#3d4a2a"><span class="role">Secondary</span>#D9C8A8</div>
+            <div class="sw" style="background:#b8542e;color:#f5efe3"><span class="role">Accent</span>#B8542E</div>
+            <div class="sw" style="background:#f5efe3;color:#3d4a2a;border:1px solid #d4c6a8"><span class="role">Bg</span>#F5EFE3</div>
+          </div>
+        </div>
+        <div>
+          <p class="panel-label">Typography</p>
+          <div class="typo-sample" style="background:#f5efe3;border-color:#d4c6a8">
+            <h3 class="typo-display" style="font-family:'Fraunces',serif;color:#3d4a2a;font-weight:500">Kuća <span style="color:#b8542e;font-style:italic">na brdu</span>, srce na obali</h3>
+            <p class="typo-body" style="font-family:'DM Sans',sans-serif;color:#5a4f43">Mediteranski mir, opipljive teksture i romantična atmosfera Kumbora.</p>
+            <p class="typo-meta">Fraunces · DM Sans · Warm humanist</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mock-label">Homepage concept 02 — Mediterranean warmth</p>
+      <div class="mock">
+        <div class="hero">
+          <div class="topbar">
+            <div class="logo"><span class="logo-mark"></span>House Hill Star</div>
+            <nav class="nav"><a>Početna</a><a>Galerija</a><a>Kumbor</a><a>O nama</a></nav>
+          </div>
+          <div class="hero-main">
+            <div class="hero-left">
+              <span class="badge">★ ★ ★ ★ ★ &nbsp;Booking 9.4</span>
+              <h1>Vaš <span class="accent">privatni</span><br>kutak<br>u Boki.</h1>
+              <p class="lede">Smeštaj za dvoje na blagom uzvišenju iznad Portonovog. Kamen, maslina, more — i niko više osim vas.</p>
+              <div class="cta-row">
+                <a class="btn-primary">Proveri dostupnost</a>
+                <a class="btn-ghost">Galerija ↗</a>
+              </div>
+            </div>
+            <div class="hero-right">
+              <div class="photo-stack">
+                <div class="ph1"></div>
+                <div class="ph2"></div>
+                <div class="ph-quote">
+                  <div class="stars">★ ★ ★ ★ ★</div>
+                  „Najlepša terasa na koju smo ikada stupili."
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-2">
+          <h2>Sve što kuća pruža — bez deljenja sa drugima.</h2>
+          <p class="sub">Cela vila je vaša. Vrt, parking i terasa nisu deljeni ni sa kim drugim. Sloboda mediteranskog dana, od jutarnje kafe do večeri uz cvrčke.</p>
+          <div class="amenity-flow">
+            <div class="chip feature"><span class="dot"></span>Pogled na zaliv</div>
+            <div class="chip"><span class="dot"></span>Klima uređaj</div>
+            <div class="chip"><span class="dot"></span>Privatni vrt</div>
+            <div class="chip"><span class="dot"></span>Wi-Fi</div>
+            <div class="chip"><span class="dot"></span>Parking u dvorištu</div>
+            <div class="chip"><span class="dot"></span>Puna kuhinja</div>
+            <div class="chip"><span class="dot"></span>Terasa sa pogledom</div>
+            <div class="chip"><span class="dot"></span>Dnevni boravak</div>
+            <div class="chip"><span class="dot"></span>5 min do plaže</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DIRECTION 3 ============ -->
+  <div class="direction d3">
+    <div class="dir-head">
+      <div>
+        <div class="dir-num">Direction 03</div>
+        <h2 class="dir-name">Hillside Twilight</h2>
+      </div>
+      <p class="dir-tag">Cinematic boutique — indigo, zlato, noćno nebo nad zalivom. Premium pozicioniranje, OTA-grade prezentacija.</p>
+    </div>
+    <div class="dir-body">
+      <div class="row">
+        <div>
+          <p class="panel-label">Color palette</p>
+          <div class="swatches">
+            <div class="sw" style="background:#0f1226;color:#c8a96b"><span class="role">Primary</span>#0F1226</div>
+            <div class="sw" style="background:#2d3458;color:#f4f0e8"><span class="role">Secondary</span>#2D3458</div>
+            <div class="sw" style="background:#c8a96b;color:#0f1226"><span class="role">Accent</span>#C8A96B</div>
+            <div class="sw" style="background:#f4f0e8;color:#0f1226;border:1px solid #2d3458"><span class="role">Bg</span>#F4F0E8</div>
+          </div>
+        </div>
+        <div>
+          <p class="panel-label">Typography</p>
+          <div class="typo-sample" style="background:#0f1226;border-color:#2d3458">
+            <h3 class="typo-display" style="font-family:'Playfair Display',serif;color:#f4f0e8;font-weight:400">Sumrak nad <span style="color:#c8a96b;font-style:italic">zalivom</span></h3>
+            <p class="typo-body" style="font-family:'Manrope',sans-serif;color:#c8c4d4">Diskretna luksuzna vila, ručno odabrana iskustva za zahtevne goste.</p>
+            <p class="typo-meta" style="color:#a8a3b8">Playfair Display · Manrope · Cinematic luxe</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mock-label">Homepage concept 03 — Cinematic premium</p>
+      <div class="mock">
+        <div class="hero">
+          <div class="topbar">
+            <div class="logo">HOUSE<span class="star">★</span>HILL<span class="star">★</span>STAR</div>
+            <nav class="nav"><a>Početna</a><a>Galerija</a><a>Kumbor</a><a>O nama</a><a class="book-btn">Rezerviši</a></nav>
+          </div>
+          <div class="hero-content">
+            <div class="pre-title">Kumbor &nbsp;·&nbsp; Boka Kotorska &nbsp;·&nbsp; Est. 2024</div>
+            <h1>Tamo gde <span class="gold">brdo</span><br>dotakne <span class="gold">zaliv</span>.</h1>
+            <p class="lede">Privatna vila iznad Portonovog. Dvoje gostiju, jedna terasa, jedan pogled koji ostaje u sećanju.</p>
+            <div class="cta-row">
+              <a class="btn-primary">Rezerviši boravak</a>
+              <a class="btn-ghost">Otkrij više →</a>
+            </div>
+            <div class="meta-strip">
+              <div class="meta-item"><div class="num">9.4</div><div class="lbl">Booking ocena</div></div>
+              <div class="meta-item"><div class="num">100%</div><div class="lbl">Privatno</div></div>
+              <div class="meta-item"><div class="num">5'</div><div class="lbl">Do plaže</div></div>
+              <div class="meta-item"><div class="num">∞</div><div class="lbl">Pogled na zaliv</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="section-2">
+          <div class="grid">
+            <div>
+              <h2>Iskustvo<br>krojeno za <span class="gold">dvoje.</span></h2>
+              <p>Bez deljenih prostora, bez pregovaranja oko terase. House Hill Star prima jedan par — i sve što kuća nudi pripada samo vama tokom boravka.</p>
+            </div>
+            <div class="feature-card">
+              <div class="lbl">Signature feature</div>
+              <h3>Terasa pri zalasku</h3>
+              <p>Zapadno orijentisana terasa hvata svaki zalazak nad Bokokotorskim zalivom. Posluženje vina i lokalne degustacije organizujemo na zahtev.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
