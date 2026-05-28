@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { useTranslations, bookingUrl } from '../i18n/ui';
+
+const lang = 'sr' as const;
+const t = useTranslations(lang);
+
+const pageTitle = 'Kumbor — Boka Kotorska · House Hill Star';
+const pageDesc = 'Kumbor na ulazu u Bokokotorski zaliv: pet minuta do mora, deset do Herceg Novog, dvadeset pet do aerodroma Tivat. Lokacija vile House Hill Star.';
+
+const distances = [
+  'kumbor.dist.1',
+  'kumbor.dist.2',
+  'kumbor.dist.3',
+  'kumbor.dist.4',
+  'kumbor.dist.5',
+  'kumbor.dist.6'
+] as const;
+---
+<BaseLayout lang={lang} title={pageTitle} description={pageDesc}>
+  <SiteHeader slot="header" lang={lang} variant="dark" />
+
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="k-hero dark-surface">
+    <div class="k-hero__glow" aria-hidden="true"></div>
+    <div class="container k-hero__inner">
+      <div class="eyebrow">{t('kumbor.page.eyebrow')}</div>
+      <h1 class="display k-hero__title">
+        {t('kumbor.page.title.line1')} <em>{t('kumbor.page.title.accent')}</em>
+      </h1>
+      <p class="lede k-hero__lede">{t('kumbor.page.lede')}</p>
+    </div>
+  </section>
+
+  <!-- ============ INTRO (editorial 2-col) ============ -->
+  <section class="k-intro section">
+    <div class="container k-intro__grid">
+      <div class="k-intro__head">
+        <div class="eyebrow eyebrow--dark">{t('kumbor.intro.eyebrow')}</div>
+        <h2 class="h2 k-intro__title">
+          {t('kumbor.intro.title.line1')}<br />
+          <em class="gold">{t('kumbor.intro.title.accent')}</em>
+        </h2>
+      </div>
+      <div class="k-intro__body">
+        <p>{t('kumbor.intro.body1')}</p>
+        <p>{t('kumbor.intro.body2')}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DISTANCES (figures list, words not icons) ============ -->
+  <section class="k-dist section dark-surface">
+    <div class="container">
+      <div class="k-dist__head">
+        <div class="eyebrow">{t('kumbor.distances.eyebrow')}</div>
+        <h2 class="display k-dist__title">
+          {t('kumbor.distances.title.line1')} <em>{t('kumbor.distances.title.accent')}</em>
+        </h2>
+      </div>
+      <ul class="k-dist__list">
+        {distances.map(d => (
+          <li class="k-dist__row">
+            <span class="k-dist__value">{t(`${d}.value` as any)}</span>
+            <span class="k-dist__label">{t(`${d}.label` as any)}</span>
+            <span class="k-dist__note">{t(`${d}.note` as any)}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ NEARBY (full-bleed editorial) ============ -->
+  <section class="k-nearby section">
+    <div class="container k-nearby__inner">
+      <div class="eyebrow eyebrow--dark">{t('kumbor.nearby.eyebrow')}</div>
+      <h2 class="h2 k-nearby__title">
+        {t('kumbor.nearby.title.line1')} <em class="gold">{t('kumbor.nearby.title.accent')}</em>
+      </h2>
+      <p class="lede k-nearby__body">{t('kumbor.nearby.body')}</p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="k-cta section dark-surface">
+    <div class="container k-cta__inner">
+      <h2 class="display k-cta__title">
+        {t('kumbor.cta.title.line1')}<br />
+        <em>{t('kumbor.cta.title.accent')}</em>
+      </h2>
+      <p class="lede k-cta__body">{t('kumbor.cta.body')}</p>
+      <a class="btn-primary" href={bookingUrl[lang]} target="_blank" rel="noopener">
+        {t('kumbor.cta.button')}
+      </a>
+    </div>
+  </section>
+
+  <SiteFooter slot="footer" lang={lang} />
+</BaseLayout>
+
+<style>
+  /* ============ HERO ============ */
+  .k-hero {
+    position: relative;
+    overflow: hidden;
+    padding-top: 180px;
+    padding-bottom: var(--space-7);
+  }
+  .k-hero__glow {
+    position: absolute;
+    top: -240px;
+    right: -180px;
+    width: 680px;
+    height: 680px;
+    background: var(--gradient-gold-glow);
+    pointer-events: none;
+  }
+  .k-hero__inner { position: relative; z-index: 2; }
+  .k-hero__title { margin: var(--space-4) 0 var(--space-4); max-width: 820px; }
+  .k-hero__lede { max-width: 600px; margin: 0; }
+
+  /* ============ INTRO ============ */
+  .k-intro__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .k-intro__title { margin: var(--space-3) 0 0; }
+  .k-intro__body { margin: 0; max-width: 560px; }
+  .k-intro__body p {
+    font-size: var(--text-lede);
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 var(--space-3);
+  }
+  .k-intro__body p:last-child { margin-bottom: 0; }
+
+  /* ============ DISTANCES ============ */
+  .k-dist__head { margin-bottom: var(--space-6); }
+  .k-dist__title { margin: var(--space-3) 0 0; max-width: 720px; }
+
+  .k-dist__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .k-dist__row {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    gap: var(--space-4);
+    align-items: baseline;
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--color-border-dark);
+  }
+  .k-dist__row:last-child { border-bottom: 1px solid var(--color-border-dark); }
+
+  .k-dist__value {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.5vw, 40px);
+    color: var(--color-accent);
+    line-height: 1;
+  }
+  .k-dist__label {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    color: var(--color-text-on-dark);
+  }
+  .k-dist__note {
+    font-family: var(--font-body);
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-muted-dark);
+    text-align: right;
+  }
+
+  /* ============ NEARBY ============ */
+  .k-nearby__inner { max-width: 820px; }
+  .k-nearby__title { margin: var(--space-3) 0 var(--space-4); }
+  .k-nearby__body { margin: 0; color: var(--color-text); }
+
+  /* ============ CTA ============ */
+  .k-cta__inner { text-align: center; max-width: 720px; margin: 0 auto; }
+  .k-cta__title { margin: 0 0 var(--space-3); }
+  .k-cta__body { margin: 0 auto var(--space-5); max-width: 480px; }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 900px) {
+    .k-hero { padding-top: 130px; }
+    .k-intro__grid { grid-template-columns: 1fr; gap: var(--space-5); }
+    .k-dist__row {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+    .k-dist__note { text-align: left; }
+  }
+</style>

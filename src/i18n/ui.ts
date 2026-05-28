@@ -112,6 +112,125 @@ export const ui = {
     'cta.body': 'Dostupnost i cene se prate u realnom vremenu preko Booking.com platforme.',
     'cta.primary': 'Proveri dostupnost',
 
+    // ========================================================
+    // GALERIJA page
+    // ========================================================
+    'gallery.page.eyebrow': 'Galerija',
+    'gallery.page.title.line1': 'Kuća,',
+    'gallery.page.title.accent': 'kadar po kadar.',
+    'gallery.page.lede': 'Terasa okrenuta zalivu, enterijer u toplim tonovima, vrt koji miriše na borovinu i more. Slike koje slede beleže svetlo kakvo Kumbor poznaje — od jutarnje izmaglice nad vodom do zlatnog sata pred veče.',
+    'gallery.page.note': 'Prave fotografije biće dodate uskoro. Prikazani okviri su privremeni.',
+
+    'gallery.terrace.eyebrow': '01 — Terasa',
+    'gallery.terrace.title': 'Zapadna terasa',
+    'gallery.terrace.body': 'Mesto oko kojeg se vrti ceo dan. Kafa u senci ujutru, večera pod otvorenim nebom kada se zaliv oboji.',
+    'gallery.terrace.1': 'Jutarnja kafa na terasi',
+    'gallery.terrace.2': 'Večera pod otvorenim nebom',
+    'gallery.terrace.3': 'Zalazak nad zalivom',
+
+    'gallery.interior.eyebrow': '02 — Enterijer',
+    'gallery.interior.title': 'Unutrašnji prostor',
+    'gallery.interior.body': 'Dnevni boravak, spavaća soba, kuhinja. Prirodni materijali, prigušene boje, ništa suvišno.',
+    'gallery.interior.1': 'Dnevni boravak',
+    'gallery.interior.2': 'Spavaća soba sa pogledom',
+    'gallery.interior.3': 'Kuhinja i trpezarija',
+
+    'gallery.garden.eyebrow': '03 — Vrt',
+    'gallery.garden.title': 'Privatni vrt',
+    'gallery.garden.body': 'Maslina, lovor i lavanda. Ograđen prostor u kojem se ne čuje niko osim cvrčaka.',
+    'gallery.garden.1': 'Maslinjak u dvorištu',
+    'gallery.garden.2': 'Senka lovora u podne',
+
+    'gallery.views.eyebrow': '04 — Pogledi',
+    'gallery.views.title': 'Bokokotorski zaliv',
+    'gallery.views.body': 'Voda, ostrva i planine koje se spuštaju do mora. Pogled koji se menja sa svakim satom.',
+    'gallery.views.1': 'Pogled na Portonovi',
+    'gallery.views.2': 'Zaliv u zlatnom satu',
+    'gallery.views.3': 'Svetla zaliva noću',
+
+    'gallery.cta.title.line1': 'Najbolji kadar je',
+    'gallery.cta.title.accent': 'onaj uživo.',
+    'gallery.cta.body': 'Datumi i dostupnost prate se preko Booking.com platforme.',
+    'gallery.cta.button': 'Proveri dostupnost',
+
+    // ========================================================
+    // KUMBOR page
+    // ========================================================
+    'kumbor.page.eyebrow': 'Kumbor · Boka Kotorska',
+    'kumbor.page.title.line1': 'Mesto koje',
+    'kumbor.page.title.accent': 'ne žuri.',
+    'kumbor.page.lede': 'Kumbor leži na ulazu u Bokokotorski zaliv, između Herceg Novog i Tivta. Ribarsko naselje koje je zadržalo svoj mir i kada je Portonovi pored njega izrastao u marinu svetskog glasa.',
+
+    'kumbor.intro.eyebrow': 'O mestu',
+    'kumbor.intro.title.line1': 'Između mora',
+    'kumbor.intro.title.accent': 'i planine.',
+    'kumbor.intro.body1': 'Selo se niže uz obalu, sa kamenim kućama koje gledaju na vodu i uskim ulicama koje se penju ka brdu. Iznad krovova, maslinjaci i borova šuma koja se spušta gotovo do same obale.',
+    'kumbor.intro.body2': 'House Hill Star stoji na uzvišenju iznad Portonovog — dovoljno visoko da pogledom obuhvati ceo zaliv, a dovoljno blizu da se do plaže stigne peške. Mir brda, blizina mora.',
+
+    'kumbor.distances.eyebrow': 'Razdaljine',
+    'kumbor.distances.title.line1': 'Sve je',
+    'kumbor.distances.title.accent': 'na dohvat.',
+    'kumbor.dist.1.value': '5 min',
+    'kumbor.dist.1.label': 'Plaža',
+    'kumbor.dist.1.note': 'peške do mora',
+    'kumbor.dist.2.value': '10 min',
+    'kumbor.dist.2.label': 'Portonovi marina',
+    'kumbor.dist.2.note': 'restorani uz more',
+    'kumbor.dist.3.value': '10 min',
+    'kumbor.dist.3.label': 'Herceg Novi',
+    'kumbor.dist.3.note': 'stari grad i tvrđave',
+    'kumbor.dist.4.value': '25 min',
+    'kumbor.dist.4.label': 'Aerodrom Tivat',
+    'kumbor.dist.4.note': 'najbliži dolazak',
+    'kumbor.dist.5.value': '40 min',
+    'kumbor.dist.5.label': 'Kotor',
+    'kumbor.dist.5.note': 'pod zaštitom UNESCO-a',
+    'kumbor.dist.6.value': '45 min',
+    'kumbor.dist.6.label': 'Dubrovnik',
+    'kumbor.dist.6.note': 'preko granice',
+
+    'kumbor.nearby.eyebrow': 'U okolini',
+    'kumbor.nearby.title.line1': 'Dan koji',
+    'kumbor.nearby.title.accent': 'sami krojite.',
+    'kumbor.nearby.body': 'U krugu od pola sata: marina Portonovi sa restoranima na vodi, tvrđave i šetalište Herceg Novog, plaža Žanjice i ostrvo Mamula do kojih se stiže brodom, te skrivene uvale poluostrva Luštica za one koji traže potpunu samoću. Jedrenje, degustacije lokalnih vina i izleti brodom organizuju se na zahtev.',
+
+    'kumbor.cta.title.line1': 'Boka se ne',
+    'kumbor.cta.title.accent': 'opisuje. Vidi se.',
+    'kumbor.cta.body': 'Dostupnost i cene prate se u realnom vremenu preko Booking.com platforme.',
+    'kumbor.cta.button': 'Proveri dostupnost',
+
+    // ========================================================
+    // O NAMA page
+    // ========================================================
+    'about.page.eyebrow': 'O nama',
+    'about.page.title.line1': 'Jedna kuća,',
+    'about.page.title.accent': 'jedna priča.',
+    'about.page.lede': 'House Hill Star nije hotel. To je jedna kuća na brdu iznad Kumbora, otvorena za jedan par u jednom trenutku — i sve što nudi pripada samo njima.',
+
+    'about.story.eyebrow': 'Zamisao',
+    'about.story.title.line1': 'Protivteža',
+    'about.story.title.accent': 'žurbi.',
+    'about.story.body1': 'Kuća je zamišljena kao mesto na koje se dolazi da bi se usporilo. Bez recepcije, bez hodnika punih vrata, bez suseda iza zida. Samo prostor, svetlo i pogled na zaliv koji se menja sa svakim satom.',
+    'about.story.body2': 'Svaki detalj biran je sa istom merom: prirodni materijali, topli tonovi, nameštaj koji poziva da se ostane duže. Ono što kuća ne nudi jednako je važno kao ono što nudi — nema buke, nema gužve, nema kompromisa oko privatnosti.',
+
+    'about.principles.eyebrow': 'Načela',
+    'about.principles.title.line1': 'Tri stvari koje',
+    'about.principles.title.accent': 'se ne menjaju.',
+    'about.principle.1.num': '01',
+    'about.principle.1.title': 'Privatnost',
+    'about.principle.1.body': 'Jedan par tokom boravka. Vrt, terasa i dnevni boravak pripadaju samo vama — ništa se ne deli.',
+    'about.principle.2.num': '02',
+    'about.principle.2.title': 'Mir',
+    'about.principle.2.body': 'Daleko od gužve, dovoljno blizu svemu. Tišina brda umesto buke naselja.',
+    'about.principle.3.num': '03',
+    'about.principle.3.title': 'Pogled',
+    'about.principle.3.body': 'Zapadna terasa hvata ceo Bokokotorski zaliv i svaki zalazak nad vodom.',
+
+    'about.cta.title.line1': 'Ostalo se',
+    'about.cta.title.accent': 'doživi na licu mesta.',
+    'about.cta.body': 'Dostupnost i cene prate se u realnom vremenu preko Booking.com platforme.',
+    'about.cta.button': 'Rezerviši boravak',
+
     // Footer
     'footer.tagline': 'Privatna vila iznad Bokokotorskog zaliva.',
     'footer.location': 'Kumbor · Herceg Novi · Crna Gora',

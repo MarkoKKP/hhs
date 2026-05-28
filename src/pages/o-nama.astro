@@ -1,0 +1,217 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { useTranslations, bookingUrl } from '../i18n/ui';
+
+const lang = 'sr' as const;
+const t = useTranslations(lang);
+
+const pageTitle = 'O nama — House Hill Star · Kumbor';
+const pageDesc = 'Jedna kuća na brdu iznad Kumbora, otvorena za jedan par u jednom trenutku. Priča iza vile House Hill Star.';
+
+const principles = [
+  'about.principle.1',
+  'about.principle.2',
+  'about.principle.3'
+] as const;
+---
+<BaseLayout lang={lang} title={pageTitle} description={pageDesc}>
+  <SiteHeader slot="header" lang={lang} variant="dark" />
+
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="a-hero dark-surface">
+    <div class="a-hero__glow" aria-hidden="true"></div>
+    <div class="container a-hero__inner">
+      <div class="eyebrow">{t('about.page.eyebrow')}</div>
+      <h1 class="display a-hero__title">
+        {t('about.page.title.line1')}<br />
+        <em>{t('about.page.title.accent')}</em>
+      </h1>
+      <p class="lede a-hero__lede">{t('about.page.lede')}</p>
+    </div>
+  </section>
+
+  <!-- ============ STORY (light, 2-col with media) ============ -->
+  <section class="a-story section">
+    <div class="container a-story__grid">
+      <figure class="a-story__media">
+        <div class="a-story__frame">
+          <span class="a-story__hint">exterior-house-dusk-01.jpg</span>
+        </div>
+        <figcaption>House Hill Star, iznad Portonovog.</figcaption>
+      </figure>
+      <div class="a-story__copy">
+        <div class="eyebrow eyebrow--dark">{t('about.story.eyebrow')}</div>
+        <h2 class="h2 a-story__title">
+          {t('about.story.title.line1')} <em class="gold">{t('about.story.title.accent')}</em>
+        </h2>
+        <p>{t('about.story.body1')}</p>
+        <p>{t('about.story.body2')}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRINCIPLES (editorial numbered list, not icon-cards) ============ -->
+  <section class="a-principles section dark-surface">
+    <div class="container">
+      <div class="a-principles__head">
+        <div class="eyebrow">{t('about.principles.eyebrow')}</div>
+        <h2 class="display a-principles__title">
+          {t('about.principles.title.line1')} <em>{t('about.principles.title.accent')}</em>
+        </h2>
+      </div>
+      <ol class="a-principles__list">
+        {principles.map(p => (
+          <li class="a-principle">
+            <span class="a-principle__num">{t(`${p}.num` as any)}</span>
+            <div class="a-principle__text">
+              <h3 class="h3 a-principle__title">{t(`${p}.title` as any)}</h3>
+              <p class="a-principle__body">{t(`${p}.body` as any)}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="a-cta section">
+    <div class="container a-cta__inner">
+      <h2 class="display a-cta__title">
+        {t('about.cta.title.line1')}<br />
+        <em class="gold">{t('about.cta.title.accent')}</em>
+      </h2>
+      <p class="lede a-cta__body">{t('about.cta.body')}</p>
+      <a class="btn-primary" href={bookingUrl[lang]} target="_blank" rel="noopener">
+        {t('about.cta.button')}
+      </a>
+    </div>
+  </section>
+
+  <SiteFooter slot="footer" lang={lang} />
+</BaseLayout>
+
+<style>
+  /* ============ HERO ============ */
+  .a-hero {
+    position: relative;
+    overflow: hidden;
+    padding-top: 180px;
+    padding-bottom: var(--space-7);
+  }
+  .a-hero__glow {
+    position: absolute;
+    bottom: -240px;
+    right: -160px;
+    width: 640px;
+    height: 640px;
+    background: var(--gradient-gold-glow);
+    pointer-events: none;
+  }
+  .a-hero__inner { position: relative; z-index: 2; }
+  .a-hero__title { margin: var(--space-4) 0 var(--space-4); max-width: 820px; }
+  .a-hero__lede { max-width: 600px; margin: 0; }
+
+  /* ============ STORY ============ */
+  .a-story__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: var(--space-7);
+    align-items: center;
+  }
+  .a-story__frame {
+    aspect-ratio: 4/5;
+    background: linear-gradient(180deg, #2D3458 0%, #0F1226 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .a-story__frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 30%, rgba(200,169,107,0.22), transparent 60%);
+  }
+  .a-story__hint {
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    letter-spacing: 0.1em;
+    font-style: italic;
+    opacity: 0.6;
+    z-index: 2;
+  }
+  .a-story__media figcaption {
+    margin-top: var(--space-2);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--color-text-muted);
+  }
+  .a-story__title { margin: var(--space-3) 0 var(--space-3); }
+  .a-story__copy p {
+    font-size: var(--text-lede);
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 var(--space-3);
+    max-width: 480px;
+  }
+  .a-story__copy p:last-child { margin-bottom: 0; }
+
+  /* ============ PRINCIPLES ============ */
+  .a-principles__head {
+    max-width: 720px;
+    margin-bottom: var(--space-6);
+  }
+  .a-principles__title { margin: var(--space-3) 0 0; }
+
+  .a-principles__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: none;
+  }
+  .a-principle {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--space-5);
+    align-items: baseline;
+    padding: var(--space-5) 0;
+    border-top: 1px solid var(--color-border-dark);
+  }
+  .a-principle:last-child { border-bottom: 1px solid var(--color-border-dark); }
+
+  .a-principle__num {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-style: italic;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+  .a-principle__title { margin: 0 0 var(--space-2); color: var(--color-text-on-dark); }
+  .a-principle__body {
+    margin: 0;
+    max-width: 520px;
+    line-height: 1.7;
+    color: var(--color-text-muted-dark);
+  }
+
+  /* ============ CTA ============ */
+  .a-cta__inner { text-align: center; max-width: 720px; margin: 0 auto; }
+  .a-cta__title { margin: 0 0 var(--space-3); }
+  .a-cta__body { margin: 0 auto var(--space-5); max-width: 480px; color: var(--color-text-muted); }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 900px) {
+    .a-hero { padding-top: 130px; }
+    .a-story__grid { grid-template-columns: 1fr; gap: var(--space-5); }
+    .a-principle {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+  }
+</style>

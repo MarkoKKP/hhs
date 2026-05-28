@@ -1,0 +1,217 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { useTranslations, bookingUrl } from '../i18n/ui';
+
+const lang = 'sr' as const;
+const t = useTranslations(lang);
+
+const pageTitle = 'Galerija — House Hill Star · Kumbor';
+const pageDesc = 'Terasa, enterijer, vrt i pogledi na Bokokotorski zaliv. Galerija vile House Hill Star u Kumboru.';
+
+// Grouped editorial sections. `file` is a dev placeholder hint until real
+// photos arrive; once added, swap the placeholder frame for an <img>.
+const groups = [
+  {
+    eyebrow: 'gallery.terrace.eyebrow',
+    title: 'gallery.terrace.title',
+    body: 'gallery.terrace.body',
+    items: [
+      { caption: 'gallery.terrace.1', file: 'terrace-morning-01.jpg', span: 'tall' },
+      { caption: 'gallery.terrace.2', file: 'terrace-dinner-01.jpg', span: '' },
+      { caption: 'gallery.terrace.3', file: 'terrace-sunset-01.jpg', span: '' }
+    ]
+  },
+  {
+    eyebrow: 'gallery.interior.eyebrow',
+    title: 'gallery.interior.title',
+    body: 'gallery.interior.body',
+    items: [
+      { caption: 'gallery.interior.1', file: 'interior-living-01.jpg', span: '' },
+      { caption: 'gallery.interior.2', file: 'interior-bedroom-01.jpg', span: 'tall' },
+      { caption: 'gallery.interior.3', file: 'interior-kitchen-01.jpg', span: '' }
+    ]
+  },
+  {
+    eyebrow: 'gallery.garden.eyebrow',
+    title: 'gallery.garden.title',
+    body: 'gallery.garden.body',
+    items: [
+      { caption: 'gallery.garden.1', file: 'garden-olive-01.jpg', span: 'wide' },
+      { caption: 'gallery.garden.2', file: 'garden-laurel-01.jpg', span: '' }
+    ]
+  },
+  {
+    eyebrow: 'gallery.views.eyebrow',
+    title: 'gallery.views.title',
+    body: 'gallery.views.body',
+    items: [
+      { caption: 'gallery.views.1', file: 'views-portonovi-01.jpg', span: '' },
+      { caption: 'gallery.views.2', file: 'views-bay-twilight-01.jpg', span: 'tall' },
+      { caption: 'gallery.views.3', file: 'views-bay-night-01.jpg', span: '' }
+    ]
+  }
+] as const;
+---
+<BaseLayout lang={lang} title={pageTitle} description={pageDesc}>
+  <SiteHeader slot="header" lang={lang} variant="dark" />
+
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="g-hero dark-surface">
+    <div class="g-hero__glow" aria-hidden="true"></div>
+    <div class="container g-hero__inner">
+      <div class="eyebrow">{t('gallery.page.eyebrow')}</div>
+      <h1 class="display g-hero__title">
+        {t('gallery.page.title.line1')} <em>{t('gallery.page.title.accent')}</em>
+      </h1>
+      <p class="lede g-hero__lede">{t('gallery.page.lede')}</p>
+    </div>
+  </section>
+
+  <!-- ============ GROUPS ============ -->
+  {groups.map((group, gi) => (
+    <section class={`g-group section ${gi % 2 === 1 ? 'dark-surface' : ''}`}>
+      <div class="container">
+        <div class="g-group__head">
+          <div class={`eyebrow ${gi % 2 === 1 ? '' : 'eyebrow--dark'}`}>{t(group.eyebrow as any)}</div>
+          <h2 class="h2 g-group__title">{t(group.title as any)}</h2>
+          <p class="g-group__body">{t(group.body as any)}</p>
+        </div>
+        <div class="g-grid">
+          {group.items.map(item => (
+            <figure class={`g-item ${item.span ? `g-item--${item.span}` : ''}`}>
+              <div class="g-frame">
+                <span class="g-frame__hint">{item.file}</span>
+              </div>
+              <figcaption>{t(item.caption as any)}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- ============ NOTE + CTA ============ -->
+  <section class="g-cta section dark-surface">
+    <div class="container g-cta__inner">
+      <p class="g-cta__note">{t('gallery.page.note')}</p>
+      <h2 class="display g-cta__title">
+        {t('gallery.cta.title.line1')}<br />
+        <em>{t('gallery.cta.title.accent')}</em>
+      </h2>
+      <p class="lede g-cta__body">{t('gallery.cta.body')}</p>
+      <a class="btn-primary" href={bookingUrl[lang]} target="_blank" rel="noopener">
+        {t('gallery.cta.button')}
+      </a>
+    </div>
+  </section>
+
+  <SiteFooter slot="footer" lang={lang} />
+</BaseLayout>
+
+<style>
+  /* ============ HERO ============ */
+  .g-hero {
+    position: relative;
+    overflow: hidden;
+    padding-top: 180px;
+    padding-bottom: var(--space-7);
+  }
+  .g-hero__glow {
+    position: absolute;
+    top: -240px;
+    left: -160px;
+    width: 640px;
+    height: 640px;
+    background: var(--gradient-gold-glow);
+    pointer-events: none;
+  }
+  .g-hero__inner { position: relative; z-index: 2; }
+  .g-hero__title { margin: var(--space-4) 0 var(--space-4); max-width: 820px; }
+  .g-hero__lede { max-width: 600px; margin: 0; }
+
+  /* ============ GROUP ============ */
+  .g-group__head {
+    max-width: 640px;
+    margin-bottom: var(--space-6);
+  }
+  .g-group__title { margin: var(--space-3) 0 var(--space-3); }
+  .g-group__body {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 520px;
+  }
+  .g-group.dark-surface .g-group__body { color: var(--color-text-muted-dark); }
+
+  .g-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .g-item { margin: 0; }
+  .g-item--tall { grid-row: span 2; }
+  .g-item--wide { grid-column: span 2; }
+
+  .g-frame {
+    aspect-ratio: 4/5;
+    background: linear-gradient(180deg, #2D3458 0%, #0F1226 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .g-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 30%, rgba(200,169,107,0.18), transparent 60%);
+  }
+  .g-item--tall .g-frame { aspect-ratio: 4/9; }
+  .g-item--wide .g-frame { aspect-ratio: 8/5; }
+
+  .g-frame__hint {
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    letter-spacing: 0.1em;
+    font-style: italic;
+    opacity: 0.55;
+    z-index: 2;
+  }
+
+  .g-item figcaption {
+    margin-top: var(--space-2);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--color-text-muted);
+  }
+  .g-group.dark-surface .g-item figcaption { color: var(--color-text-muted-dark); }
+
+  /* ============ NOTE + CTA ============ */
+  .g-cta__inner { text-align: center; max-width: 720px; margin: 0 auto; }
+  .g-cta__note {
+    font-family: var(--font-body);
+    font-size: var(--text-meta);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-muted-dark);
+    margin: 0 0 var(--space-5);
+  }
+  .g-cta__title { margin: 0 0 var(--space-3); }
+  .g-cta__body { margin: 0 auto var(--space-5); max-width: 480px; }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 900px) {
+    .g-hero { padding-top: 130px; }
+    .g-grid { grid-template-columns: 1fr; }
+    .g-item--tall,
+    .g-item--wide { grid-row: auto; grid-column: auto; }
+    .g-item--tall .g-frame,
+    .g-item--wide .g-frame { aspect-ratio: 4/5; }
+  }
+</style>
