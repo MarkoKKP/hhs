@@ -70,27 +70,33 @@ const groups = [
   </section>
 
   <!-- ============ GROUPS ============ -->
-  {groups.map((group, gi) => (
-    <section class={`g-group section ${gi % 2 === 1 ? 'dark-surface' : ''}`}>
-      <div class="container">
-        <div class="g-group__head">
-          <div class={`eyebrow ${gi % 2 === 1 ? '' : 'eyebrow--dark'}`}>{t(group.eyebrow as any)}</div>
-          <h2 class="h2 g-group__title">{t(group.title as any)}</h2>
-          <p class="g-group__body">{t(group.body as any)}</p>
+  {groups.map((group, gi) => {
+    const dark = gi % 2 === 1;
+    return (
+      <section class={dark ? 'g-group section dark-surface' : 'g-group section'}>
+        <div class="container">
+          <div class="g-group__head">
+            <div class={dark ? 'eyebrow' : 'eyebrow eyebrow--dark'}>{t(group.eyebrow as any)}</div>
+            <h2 class="h2 g-group__title">{t(group.title as any)}</h2>
+            <p class="g-group__body">{t(group.body as any)}</p>
+          </div>
+          <div class="g-grid">
+            {group.items.map(item => {
+              const itemClass = item.span ? `g-item g-item--${item.span}` : 'g-item';
+              return (
+                <figure class={itemClass}>
+                  <div class="g-frame">
+                    <span class="g-frame__hint">{item.file}</span>
+                  </div>
+                  <figcaption>{t(item.caption as any)}</figcaption>
+                </figure>
+              );
+            })}
+          </div>
         </div>
-        <div class="g-grid">
-          {group.items.map(item => (
-            <figure class={`g-item ${item.span ? `g-item--${item.span}` : ''}`}>
-              <div class="g-frame">
-                <span class="g-frame__hint">{item.file}</span>
-              </div>
-              <figcaption>{t(item.caption as any)}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
-  ))}
+      </section>
+    );
+  })}
 
   <!-- ============ NOTE + CTA ============ -->
   <section class="g-cta section dark-surface">
