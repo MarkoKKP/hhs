@@ -48,6 +48,27 @@ command -v node   >/dev/null || fatal "node not found. Enable Node.js Selector i
 command -v npm    >/dev/null || fatal "npm not found."
 command -v rsync  >/dev/null || fatal "rsync not found."
 
+# --- Ensure a modern Node (Astro 4 needs Node >= 18) -----------------------
+# The cPanel *system* node can be ancient (e.g. v10), which crashes Astro
+# during module load with no output. CloudLinux ships selectable runtimes
+# under /opt/alt/alt-nodejs*/ — pick the newest one that is >= 18.
+node_major() { node -e 'process.stdout.write(process.versions.node.split(".")[0])' 2>/dev/null || echo 0; }
+
+if [ "$(node_major)" -lt 18 ]; then
+  log "System node is $(node --version 2>/dev/null) — too old for Astro. Searching for alt-nodejs >= 18…"
+  for cand in $(ls -d /opt/alt/alt-nodejs*/root/usr/bin 2>/dev/null | sort -V -r); do
+    [ -x "$cand/node" ] || continue
+    maj="$("$cand/node" -e 'process.stdout.write(process.versions.node.split(".")[0])' 2>/dev/null || echo 0)"
+    if [ "$maj" -ge 18 ]; then
+      export PATH="$cand:$PATH"
+      log "Using Node from $cand ($("$cand/node" --version))"
+      break
+    fi
+  done
+fi
+
+[ "$(node_major)" -ge 18 ] || fatal "Need Node >= 18 for Astro 4 (found $(node --version 2>/dev/null)). Enable Node 20 via cPanel Node.js Selector, or install alt-nodejs20, then re-run."
+
 # Running as root requires OWNER_USER so synced files get correct ownership
 RUNNING_AS_ROOT=0
 if [ "$(id -u)" -eq 0 ]; then
